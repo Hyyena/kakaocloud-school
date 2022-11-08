@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="serverurl" method="post">
+      <label
+        >이름
+        <input type="text" value="홍길동" />
+      </label>
+      <label
+        >비밀번호
+        <input type="password" value="비밀번호" />
+      </label>
+      <br />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="gender" value="man" checked="checked" />남
+        <input type="radio" name="gender" value="woman" />여
+      </fieldset>
+      <br />
+      <label
+        >파일
+        <!--파일은 선택한 value를 읽을 수는 있지만 설정은 안 됨-->
+        <input type="file" name="image" />
+      </label>
+      <input type="button" value="버튼" />
+      <input type="submit" value="전송" />
+      <input type="reset" value="취소" />
+
+      <!--서버 애플리케이션과 클라이언트 애플리케이션을 하나로 만들어서 템플릿 엔진을 이용해서 출력을 한다면 이 속성은 중요-->
+      <input type="hidden" value="숨김" name="data" />
+
+      <textarea rows="5" cols="30"></textarea>
+
+      <select name="수량">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </form>
+  </body>
+</html>
