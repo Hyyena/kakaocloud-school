@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>복합 선택자</title>
+    <style>
+      #shadow {
+        font-size: 100px;
+        color: whitesmoke;
+        text-shadow: -0.05em -0.05em 0.05em pink, -0.05em -0.05em 0.05em white;
+      }
+      #dev {
+        color: blanchedalmond;
+      }
+      h1.hover {
+        color: chocolate;
+      }
+      img {
+        vertical-align: top;
+      }
+      span {
+        vertical-align: sub;
+        font-size: 0.5em;
+      }
+      ol {
+        list-style-type: upper-roman;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Hello
+      <em>World!</em>
+    </h1>
+    <p>
+      abc
+      <em id="dev">def</em>
+    </p>
+    <img
+      src="https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png"
+      width="100%"
+      height="100%"
+    />123<span>456</span>789
+    <p id="shadow">텍스트 그림자</p>
+    <ol>
+      <li>XHTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>HTML5</li>
+      <li>Node.js</li>
+      <li>React</li>
+    </ol>
+  </body>
+</html>
