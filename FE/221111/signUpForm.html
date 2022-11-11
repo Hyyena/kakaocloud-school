@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>signUpForm</title>
+  </head>
+  <body>
+    <!--action은 처리할 서버의 URL-->
+    <!--method는 요청 방식(get, post)-->
+    <form action="signUpProcessing" method="post" id="signUpForm">
+      <p>아이디<input type="text" name="id" id="id" /></p>
+      <p id="idMsg"></p>
+      <p>비밀번호<input type="password" name="pw" id="pw" /></p>
+      <p id="pwMsg"></p>
+      <p>비밀번호 확인<input type="password" name="pwVal" id="pwVal" /></p>
+      <p id="pwValMsg"></p>
+      <input type="submit" value="회원가입" />
+    </form>
+  </body>
+  <script src="signUpForm.js"></script>
+</html>
