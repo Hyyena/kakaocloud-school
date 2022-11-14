@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form의 변화</title>
+  </head>
+  <body>
+    <progress id="progress" value="0" max="100"></progress>
+    <input type="button" id="btn" value="시작" />
+  </body>
+  <script>
+    let progress = document.getElementById("progress");
+    let btn = document.getElementById("btn");
+
+    // 버튼을 누르면 progress의 value를 1초마다 10씩 증가
+    btn.addEventListener("click", (e) => {
+      // 1초마다 작업하기
+      let timer = setInterval(() => {
+        progress.value += 10;
+        console.log("작업중");
+
+        // 타이머를 멈추지 않으면 메모리 누수(Memory Leak) 발생
+        if (progress.value === 100) {
+          clearInterval(timer);
+        }
+      }, 1000);
+    });
+  </script>
+</html>
