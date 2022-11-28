@@ -260,6 +260,52 @@ content.addEventListener("click", (e) => {
               let html = request.responseText;
 
               content.innerHTML = html;
+
+              // 수정은 수정하기 위한 원본 데이터를 화면에 출력
+              document.getElementById("itemId").value = item.itemid;
+              document.getElementById("itemId").readOnly = true;
+              document.getElementById("itemName").value = item.itemname;
+              document.getElementById("price").value = item.price;
+              document.getElementById("description").value = item.description;
+
+              // 원본 이름을 숨김
+              document.getElementById("oldPictureUrl").value = item.pictureurl;
+
+              // 원본을 다른 방식으로 출력
+              document.getElementById(
+                "pictureUrl"
+              ).src = `/img/${item.pictureurl}`;
+
+              // 수정 form 찾아오기
+              let updateForm = document.getElementById("updateForm");
+
+              if (updateForm != undefined) {
+                updateForm.addEventListener("click", (e) => {
+                  // 기본 이벤트 제거
+                  e.preventDefault();
+
+                  // 전송할 데이터 생성 (form 안에 입력한 데이터 생성)
+                  const formData = new FormData(updateForm);
+
+                  // 서버에게 요청
+                  let request = new XMLHttpRequest();
+
+                  request.open("POST", "/item/update");
+                  request.send(formData);
+
+                  // 응답을 받았을 때 처리
+                  request.addEventListener("load", () => {
+                    let data = JSON.parse(request.responseText);
+
+                    if (data.result == true) {
+                      document.getElementById("listBtn").click();
+                      alert("수정 성공");
+                    } else {
+                      alert("수정 실패");
+                    }
+                  });
+                });
+              }
             });
           });
         } else {
