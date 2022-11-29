@@ -1,3 +1,7 @@
+// 환경 변수
+require("dotenv").config();
+const env = process.env;
+
 const express = require("express");
 const path = require("path");
 
