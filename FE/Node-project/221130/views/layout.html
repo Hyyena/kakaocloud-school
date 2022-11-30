@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{title}}</title>
+    <!--모바일 페이지 만들 때 사용 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-wrap">
+        <div class="profile">
+          {% if user and user.id %}
+          <div class="user-name">{{'안녕하세요😊 ' + user.nick + '님'}}</div>
+          <div class="half">
+            <div>Following</div>
+            <div class="count following-count">{{followingCount}}</div>
+          </div>
+          <div class="half">
+            <div>Follower</div>
+            <div class="count follower-count">{{followerCount}}</div>
+          </div>
+          <input id="my-id" type="hidden" value="{{user.id}}" />
+          <a id="my-profile" href="/profile" class="btn">My Profile</a>
+          <a id="logout" href="/auth/logout" class="btn">Sign Out</a>
+          {% else %}
+          <form id="login-form" action="/auth/login" method="post">
+            <div class="input-group">
+              <label for="email">e-mail</label>
+              <input id="email" type="email" name="email" required autofocus />
+            </div>
+            <div class="input-group">
+              <label for="password">password</label>
+              <input id="password" type="password" name="password" required />
+            </div>
+            <a id="join" href="/join" class="btn">Sign Up</a>
+            <button id="login" type="submit" class="btn">Sign In</button>
+            <a id="kakao" href="/auth/kakao" class="btn"
+              ><img src="/img/kakao_icon.png"
+            /></a>
+          </form>
+          {% endif %}
+        </div>
+        <footer>
+          Made by&nbsp;
+          <a href="https://github.com/Hyyena" target="_blank">Hyyena</a>
+        </footer>
+      </div>
+      {% block content %} {% endblock %}
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      window.onload = () => {
+        if (new URL(location.href).searchParams.get("loginError")) {
+          alert(new URL(location.href).searchParams.get("loginError"));
+        }
+      };
+    </script>
+    {% block script %} {% endblock %}
+  </body>
+</html>
