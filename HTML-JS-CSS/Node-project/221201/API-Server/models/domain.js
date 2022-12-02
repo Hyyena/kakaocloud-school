@@ -34,7 +34,7 @@ module.exports = class Domain extends Sequelize.Model {
   // 관계에 대한 설정
   static associate(db) {
     // User와 Domain은 1:N
-    // User의 기본 키가 Domain에 외래 키로 추가됨
+    // User의 기본 키가 Domain에 외래 키로 추가
     db.Domain.belongsTo(db.User);
   }
 };

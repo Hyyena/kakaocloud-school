@@ -296,7 +296,7 @@ sketch
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
+.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
@@ -319,9 +319,14 @@ sketch
 sessions/
 img/
 
-FE/Node-project/221116/test_02.txt
-FE/Node-project/221116/test_02_noStream.txt
-FE/Node-project/221116/test_02_Stream.txt
-FE/Node-project/221117/audit.json
-
 audit.json
+
+FE/
+
+HTML-JS-CSS/Node-project/221116/test_02.txt
+HTML-JS-CSS/Node-project/221116/test_02_noStream.txt
+HTML-JS-CSS/Node-project/221116/test_02_Stream.txt
+
+FE/Node-project/221116/problem_01.txt
+HTML-JS-CSS/Node-project/221116/test_01.txt
+HTML-JS-CSS/Node-project/221116/problem_01.txt

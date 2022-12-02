@@ -108,12 +108,6 @@ app.use("/", indexRouter);
 const authRouter = require("./routes/auth");
 app.use("/auth", authRouter);
 
-const v1Router = require("./routes/v1");
-app.use("/v1", v1Router);
-
-const v2Router = require("./routes/v2");
-app.use("/v2", v2Router);
-
 app.use("/img", express.static(path.join(__dirname, "uploads")));
 
 // * ----------------------------------------
