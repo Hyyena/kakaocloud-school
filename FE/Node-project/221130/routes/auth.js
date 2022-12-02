@@ -10,7 +10,7 @@ const User = require("../models/user");
 const router = express.Router();
 
 /* 회원 가입 처리
- * /auth/join 인데 라우팅 할 때, /auth 추가
+ * url이 /auth/join 인데, 라우팅 할 때, /auth 추가됨
  */
 router.post("/join", isNotLoggedIn, async (req, res, next) => {
   // 데이터 찾아오기
@@ -50,7 +50,7 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
   // passport 모듈을 이용해서 로그인
   passport.authenticate("local", (authError, user, info) => {
     if (authError) {
-      console.log(
+      console.error(
         "🚀 ~ file: auth.js:52 ~ passport.authenticate ~ authError",
         authError
       );
@@ -64,10 +64,11 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
 
     return req.login(user, (loginError) => {
       if (loginError) {
-        console.log(
-          "🚀 ~ file: auth.js:66 ~ returnreq.logini ~ loginError",
+        console.error(
+          "🚀 ~ file: auth.js:67 ~ return req.login ~ loginError",
           loginError
         );
+
         return next(loginError);
       }
 
@@ -89,5 +90,19 @@ router.get("/logout", isLoggedIn, (req, res, next) => {
     res.redirect("/");
   });
 });
+
+// 카카오 로그인을 눌렀을 때 처리
+router.get("/kakao", passport.authenticate("kakao"));
+
+// 카카오 로그인 실패했을 때
+router.get(
+  "/kakao/callback",
+  passport.authenticate("kakao", {
+    failureRedirect: "/",
+  }),
+  (req, res) => {
+    res.redirect("/");
+  }
+);
 
 module.exports = router;

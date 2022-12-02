@@ -100,7 +100,7 @@ app.use(passport.initialize());
 // 세션 기능은 passport 모듈이 알아서 사용
 app.use(passport.session());
 
-// * 라우터 설정
+// * ---------- 라우터 설정 ----------
 const pageRouter = require("./routes/page");
 // 여기서 설정한 URL과 page.js에 설정된 URL의 조합으로 URL을 결정
 app.use("/", pageRouter);
@@ -108,14 +108,21 @@ app.use("/", pageRouter);
 const authRouter = require("./routes/auth");
 app.use("/auth", authRouter);
 
-// 404 에러가 발생한 경우 처리
+const postRouter = require("./routes/post");
+app.use("/post", postRouter);
+
+const userRouter = require("./routes/users");
+app.use("/user", userRouter);
+// * ----------------------------------------
+
+// ! 404 에러가 발생한 경우 처리
 app.use((req, res, next) => {
   const err = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   err.status = 404;
   next(err);
 });
 
-// 404 이외의 에러가 발생한 경우 처리
+// ! 404 이외의 에러가 발생한 경우 처리
 app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV !== "production" ? err : {};
@@ -124,5 +131,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(app.get("port"), () => {
-  console.log("📡", app.get("port"), "PORT wating...");
+  console.log("📡", app.get("port"), "PORT waiting...");
 });

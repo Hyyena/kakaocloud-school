@@ -28,7 +28,10 @@ module.exports = () => {
           } else {
             done(null, false, { message: "존재하지 않는 회원입니다." });
           }
-        } catch (error) {}
+        } catch (error) {
+          console.log("🚀 ~ file: localStrategy.js:32 ~ error", error);
+          done(error);
+        }
       }
     )
   );

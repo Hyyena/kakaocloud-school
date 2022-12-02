@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>API Server Login</title>
+    <style>
+      .input-group label {
+        width: 200px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    {% if user and user.id %}
+    <span class="user-name">Hi👋 {{user.nick}}</span>
+    <a href="/auth/logout">
+      <button>Logout</button>
+    </a>
+    <fieldset>
+      <legend>Register Domain</legend>
+      <form action="/domain" method="post">
+        <div>
+          <label for="type-free">Free</label>
+          <input type="radio" id="type-free" name="type" value="free" />
+          <label for="type-premium">Premium</label>
+          <input type="radio" id="type-premium" name="type" value="premium" />
+        </div>
+        <div>
+          <label for="host">Domain</label>
+          <input
+            type="text"
+            id="host"
+            name="host"
+            placeholder="ex) AdamSoft.com"
+          />
+        </div>
+        <button>Save</button>
+      </form>
+    </fieldset>
+    <table>
+      <tr>
+        <th>DomainAddress</th>
+        <th>Type</th>
+        <th>ClientSecretKey</th>
+      </tr>
+      <!-- 기존에 등록한 도메인이 있는 경우 출력 -->
+      {% for domain in domains %}
+      <tr>
+        <td>{{domain.host}}</td>
+        <td>{{domain.type}}</td>
+        <td>{{domain.clientSecret}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <form action="/auth/login" id="login-form" method="post">
+      <h2>NodeSNS 계정으로 로그인하세요.</h2>
+      <div class="input-group">
+        <label for="email">e-mail</label>
+        <input id="email" type="email" name="email" required autofocus />
+      </div>
+      <div class="input-group">
+        <label for="password">password</label>
+        <input id="password" type="password" name="password" required />
+      </div>
+      <button id="login" type="submit" class="btn">Log In</button>
+      <a id="join" href="http://localhost:9090/join" class="btn">Sign Up</a>
+      <a id="kakao" href="http://localhost:9090/auth/kakao" class="btn"
+        ><img src="/img/kakao_icon.png" />kakao</a
+      >
+    </form>
+    <script>
+      /* 에러 메시지 출력
+       * 이 페이지로 넘어올 때, loginError를 가지고 오면 대화 상자로 출력
+       */
+      window.onload = () => {
+        if (new URL(location.href).searchParams.get("loginError")) {
+          alert(new URL(location.href).searchParams.get("loginError"));
+        }
+      };
+    </script>
+    {% endif %}
+  </body>
+</html>
