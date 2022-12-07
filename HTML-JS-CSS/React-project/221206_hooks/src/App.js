@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import UserList from "./UserList";
 import CreateUser from "./CreateUser";
 
@@ -79,10 +79,7 @@ const App = () => {
   // 활성화된 user 개수를 세는 함수 호출
   // users에 변화가 생긴 경우만 함수를 호출하고,
   // 그 이외의 경우는 결과를 복사하도록 수정
-  const count = useMemo(() => {
-    countActiveUser(users), [users];
-  });
-
+  const count = useMemo(() => countActiveUser(users), [users]);
   return (
     <div>
       <CreateUser
