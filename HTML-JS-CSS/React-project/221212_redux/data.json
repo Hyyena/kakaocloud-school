@@ -1,0 +1,7 @@
+{
+  "posts": [
+    { "id": 1, "content": "예나", "done": true },
+    { "id": 2, "content": "채원", "done": false },
+    { "id": 3, "content": "유리", "done": false }
+  ]
+}
