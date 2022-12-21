@@ -28,5 +28,16 @@ public class Main {
         datas[2] = new VO(3, "송하영", 31);
 
         System.out.println(Arrays.toString(datas));
+
+        int[] arr1 = {30, 20, 50, 10, 40};
+
+        // 정렬을 수행하지 않고 실행하면 논리적인 오류가 발생한다.
+        System.out.println(Arrays.binarySearch(arr1, 20));
+
+        Arrays.sort(arr1);
+        System.out.println(Arrays.binarySearch(arr1, 20));
+
+        // 정렬이 된 상태이므로 0이 아니고 2
+        System.out.println(Arrays.binarySearch(arr1, 30));
     }
 }

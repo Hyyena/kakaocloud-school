@@ -42,6 +42,6 @@ public class VO {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "VO [num=" + num + ", name=" + name + ", age=" + age + "]";
     }
 }
