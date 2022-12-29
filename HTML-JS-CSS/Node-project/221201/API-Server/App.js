@@ -83,6 +83,7 @@ app.use(
 );
 
 const { sequelize } = require("./models");
+console.log("🚀 ~ file: App.js:86 ~ sequelize", sequelize);
 
 sequelize
   .sync({ force: false })

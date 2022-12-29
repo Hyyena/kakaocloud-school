@@ -47,3 +47,4 @@ Hashtag.associate(db);
 Domain.associate(db);
 
 module.exports = db;
+console.log("🚀 ~ file: index.js:50 ~ db", db);
