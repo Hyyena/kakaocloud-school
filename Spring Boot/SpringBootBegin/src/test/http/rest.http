@@ -1,0 +1,17 @@
+###
+GET http://localhost:8090/api/v1/rest/hello
+
+###
+GET http://localhost:8090/api/v1/rest/newhello
+
+###
+GET http://localhost:8090/api/v1/rest/product/3333
+
+###
+GET http://localhost:8090/api/v1/rest/param?name=Hyyena&email=sjtxm0320@gmail.com&organization=우리형천재
+
+###
+GET http://localhost:8090/api/v1/rest/param1/?name=Hyyena&email=sjtxm0320@gmail.com&organization=우리형천재
+
+###
+GET http://localhost:8090/api/v1/rest/param2/?name=Hyyena&email=sjtxm0320@gmail.com&organization=우리형천재

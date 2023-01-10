@@ -1,0 +1,21 @@
+server:
+  port: 8090
+spring:
+  banner:
+    image:
+      location: banner.png
+      width: 40
+      height: 10
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  freemarker:
+    cache: false
+  thymeleaf:
+    cache: false
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
