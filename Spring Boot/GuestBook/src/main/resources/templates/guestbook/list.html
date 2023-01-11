@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<th:block th:replace="~{/layout/basic:: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <h1>방명록</h1>
+        <span>
+            <a th:href="@{/guestbook/register}">
+                <button class="btn btn-danger" type="button">register</button>
+            </a>
+        </span>
+        <div th:if="${message != null}" th:text="${message}"></div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Writer</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dto : ${result.dtoList}">
+                <th scope="row">[[${dto.gno}]]</th>
+                <td>[[${dto.title}]]</td>
+                <td>[[${dto.writer}]]</td>
+                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination h-100 justify-content-center align-items-center">
+            <li class="page-item" th:if="${result.prev}">
+                <a class="page-link" tabindex="-1" th:href="@{/guestbook/list(page=${result.start - 1})}">prev</a>
+            </li>
+            <li th:class="'page-item ' + ${result.page == page ? 'active' : ''}" th:each="page:${result.pageList}">
+                <a class="page-link" th:href="@{/guestbook/list(page=${page})}">[[${page}]]</a>
+            </li>
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{/guestbook/list(page=${result.end + 1})}">next</a>
+            </li>
+        </ul>
+    </th:block>
+</th:block>
