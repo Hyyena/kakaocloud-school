@@ -1,5 +1,6 @@
 package gmail.sjtxm0320.boardproject.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -39,5 +40,13 @@ class ReplyRepositoryTest {
         Reply reply = result.get();
         System.out.println(reply);
         System.out.println(reply.getBoard());
+    }
+
+    // 댓글을 가져오는 메서드 확인
+    @Test
+    public void testListReply() {
+        List<Reply> replyList = replyRepository.findByBoardOrderByRno(Board.builder().bno(50L).build());
+
+        replyList.forEach(reply -> System.out.println(reply));
     }
 }

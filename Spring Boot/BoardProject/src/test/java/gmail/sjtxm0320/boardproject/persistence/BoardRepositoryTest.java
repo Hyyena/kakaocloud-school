@@ -91,4 +91,23 @@ class BoardRepositoryTest {
             System.out.println(count);
         });
     }
+
+    @Test
+    public void testSearch1() {
+        boardRepository.search1();
+    }
+
+    // 검색 테스트
+    @Test
+    public void testSearch() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending().and(Sort.by("title").ascending()));
+
+        Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);
+
+        System.out.println(result);
+
+        for (Object[] row : result.getContent()) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
 }

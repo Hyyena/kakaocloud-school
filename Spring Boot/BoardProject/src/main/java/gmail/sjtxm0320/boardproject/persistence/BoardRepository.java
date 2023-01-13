@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import gmail.sjtxm0320.boardproject.domain.Board;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository {
     // Board 데이터를 가져올 때 Author 정보도 가져오는 메서드
     @Query("select b, a from Board b left join b.author a where b.bno = :bno")
     public Object getBoardWithAuthor(@Param("bno") Long bno);
