@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload Test</title>
+</head>
+<body>
+<input accept="image/*" id="imginp" multiple="multiple" name="uploadFiles" type="file"/>
+<button id="uploadBtn">Uplaod</button>
+<img border="1" height="200" width="200"/>
+<div class="uploadResult"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    // 파일을 선택할 때 미리보기
+    let imginp = document.getElementById("imginp");
+    imginp.addEventListener("change", (e) => {
+        if (imginp.files && imginp.files[0]) {
+            let filename = imginp.files[0].name;
+            console.log(filename);
+            let reader = new FileReader();
+
+            reader.addEventListener("load", (e) => {
+                document.getElementById("imginp").src = e.target.result;
+            });
+
+            reader.readAsDataURL(imginp.files[0]);
+        }
+    })
+
+    // 파일을 업로드 하고 미리보기
+
+    $("#uploadBtn").click(function () {
+        let formData = new FormData();
+
+        // 선택된 파일 가져오기
+        let inputFile = $("input[type='file']");
+        let files = inputFile[0].files;
+
+        if (files.length < 1) {
+            alert("선택된 파일이 없습니다.");
+        }
+
+        // 선택된 파일을 formData에 추가
+        for (let i = 0; i < files.length; i++) {
+            console.log(files[i]);
+            formData.append("uploadFiles", files[i]);
+        }
+
+        // 서버에 전송
+        $.ajax({
+            url: "/upload",
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                console.log("Success to upload");
+
+                let divArea = $(".uploadResult");
+                let str = "";
+                for (let i = 0; i < result.length; i++) {
+                    str += "<div>";
+                    str += "<img src='/display?filename=" + result[i].thumbnailURL + "'>";
+                    str += "<button class='removeBtn' data-name='" + result[i].imageURL + "'>Del</button>";
+                    str += "</div>"
+                }
+                divArea.append(str);
+            },
+            error: function (jqXHR, textstatus, errorThrown) {
+                console.log(textstatus);
+            },
+        })
+    })
+
+    // 삭제 버튼을 눌렀을 때 처리
+    $(".uploadResult").on("click", ".removeBtn", function (e) {
+        // 이벤트가 발생한 버튼 찾기
+        let target = $(this);
+        // 이벤트가 발생한 버튼의 data-name 속성 찾아오기
+        let fileName = target.data("name");
+
+        let targetDiv = $(this).closest("div");
+        $.post("/removefile", {fileName: fileName}, function (result) {
+            console.log(result);
+
+            // 서버로부터의 응답이 true라면 이미지 출력 영역 삭제
+            if (result) {
+                targetDiv.remove();
+            }
+        })
+    })
+</script>
+</html>

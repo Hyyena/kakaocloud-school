@@ -1,6 +1,7 @@
 package gmail.sjtxm0320.moviereviewproject.persistence;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -54,6 +55,15 @@ class MovieRepositoryTest {
 
         for (Object[] objects : result.getContent()) {
             System.out.println(Arrays.toString(objects));
+        }
+    }
+
+    @Test
+    public void detailTest() {
+        List<Object[]> list = movieRepository.getMovieWithAll(3L);
+
+        for (Object[] arr : list) {
+            System.out.println(Arrays.toString(arr));
         }
     }
 }

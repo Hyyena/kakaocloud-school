@@ -1,14 +1,17 @@
 package gmail.sjtxm0320.moviereviewproject.persistence;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 
 import gmail.sjtxm0320.moviereviewproject.domain.Member;
 import gmail.sjtxm0320.moviereviewproject.domain.Movie;
 import gmail.sjtxm0320.moviereviewproject.domain.Review;
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
 class ReviewRepositoryTest {
@@ -36,4 +39,30 @@ class ReviewRepositoryTest {
         });
     }
 
+    @Test
+    // @Transactional
+    public void getReviews() {
+        Movie movie = Movie.builder().mno(96L).build();
+
+        List<Review> result = reviewRepository.findByMovie(movie);
+
+        result.forEach(review -> {
+            System.out.println(review.getReviewNum());
+            System.out.println(review.getMember().getEmail());
+        });
+    }
+
+    @Test
+    public void deleteByMember() {
+        Member member = Member.builder().mid(8L).build();
+
+        reviewRepository.deleteByMember(member);
+    }
+
+    @Test
+    @Transactional
+    @Commit
+    public void updatebyMember() {
+        reviewRepository.updateByMember(58L);
+    }
 }
