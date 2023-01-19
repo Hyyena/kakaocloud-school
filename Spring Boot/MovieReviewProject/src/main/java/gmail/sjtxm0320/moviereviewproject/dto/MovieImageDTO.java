@@ -1,6 +1,5 @@
 package gmail.sjtxm0320.moviereviewproject.dto;
 
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -13,8 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-// Serializable(직렬화): 데이터를 전송할 때 객체 단위로 전송할 수 있도록 도와주는 인터페이스
-public class MovieImageDTO implements Serializable {
+public class MovieImageDTO {
     private String imgName;
     private String uuid;
     private String path;
