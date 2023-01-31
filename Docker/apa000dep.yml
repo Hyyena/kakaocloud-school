@@ -1,0 +1,35 @@
+apiVersion:
+  apps/v1
+kind:
+  Deployment
+metadata:
+  # 디플로이먼트 이름
+  name:
+    apa000dep
+spec:
+  # 셀렉터 설정
+  selector:
+    # 셀렉터가 선택할 관리 대상 레이블
+    matchLabels:
+      app:
+        apa000kube
+  # 레플리카 설정
+  replicas:
+    3
+  # 템플릿(pod의 정보)
+  template:
+    # pod의 메타데이터를 기재
+    metadata:
+      labels:
+        app:
+          apa000kube
+      # pod의 스펙을 기재
+      spec:
+        containers:
+          - name:
+              apa000ex91
+            image:
+              httpd
+            ports:
+              - containerPort:
+                  80
